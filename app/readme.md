@@ -23,6 +23,16 @@ This project is a simple yet powerful web application for task management. It pr
 ## Getting Started
 
 1. Clone the repository:
+   git clone https://github.com/vinutabasavaraj/maiora_assesment.git
 
-   ```bash
-   git clone https://github.com/yourusername/yourproject.git
+2. Install dependencies:
+    pip install -r requirements.txt
+
+3. Run the FastAPI application:
+    uvicorn app.main:app --host 0.0.0.0 --port 8000(port number)
+
+4. Access the API documentation:
+    Swagger UI: http://localhost:8000/docs
+
+
+
