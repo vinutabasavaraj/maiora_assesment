@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatroom</title>
+</head>
+<body>
+    <h1>Chatroom - Task {{ task_id }}</h1>
+    <div id="messages"></div>
+    <input id="messageInput" type="text" autocomplete="off">
+    <button id="sendButton">Send</button> 
+
+    <script>
+        var ws = new WebSocket("ws://" + window.location.host + "/ws/{{ task_id }}");
+
+
+
+        // Handle WebSocket open event
+        ws.onopen = function(event) {
+            console.log("WebSocket opened:", event);
+        };
+
+        // Handle WebSocket message event
+        ws.onmessage = function(event) {
+            var messagesDiv = document.getElementById("messages");
+            messagesDiv.innerHTML += "<p>" + event.data + "</p>";
+        };
+
+        // Handle WebSocket close event
+        ws.onclose = function(event) {
+            console.log("WebSocket closed:", event);
+
+        };
+
+        // Handle WebSocket error event
+        ws.onerror = function(event) {
+            console.error("WebSocket error:", event);
+        };
+
+        // Handle button click to send a message
+        document.getElementById("sendButton").addEventListener("click", function(event) {
+            event.preventDefault();
+            sendMessage();
+        });
+
+        function sendMessage() {
+            var messageInput = document.getElementById("messageInput");
+            ws.send(messageInput.value);
+            messageInput.value = "";
+        }
+    </script>
+</body>
+</html>
