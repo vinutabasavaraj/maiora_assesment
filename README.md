@@ -34,5 +34,11 @@ This project is a simple yet powerful web application for task management. It pr
 4. Access the API documentation:
     Swagger UI: http://localhost:8000/docs
 
+5. Access the Chatroom:
+    http://localhost:8000/chatroom/{tash_id}
+
+    
+
+
 
 

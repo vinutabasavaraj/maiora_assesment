@@ -43,6 +43,9 @@ async def websocket_endpoint(websocket: WebSocket, task_id: int):
 
 @router.post("/tasks/", tags=["Task"],response_model=Task)
 def create_task_api(taskinfo: Task, credentials: HTTPAuthorizationCredentials = Security(security),db: Session = Depends(get_db)):
+    """
+    API to add the task
+    """
     token = credentials.credentials
     user_id = auth_handler.decode_token(token)
     if user_id:
@@ -50,6 +53,10 @@ def create_task_api(taskinfo: Task, credentials: HTTPAuthorizationCredentials = 
 
 @router.get("/tasks/{task_id}", response_model=Task, tags=["Task"])
 def read_task_api(task_id: int, credentials: HTTPAuthorizationCredentials = Security(security), db: Session = Depends(get_db)):
+    """
+    API to fetch the partcular task based on task id
+    """
+    
     token = credentials.credentials
     user_id = auth_handler.decode_token(token)
     if user_id:
@@ -60,6 +67,9 @@ def read_task_api(task_id: int, credentials: HTTPAuthorizationCredentials = Secu
 
 @router.put("/tasks/{task_id}", response_model=Task, tags=["Task"])
 def update_task_api(task_id: int, updated_task: Task, credentials: HTTPAuthorizationCredentials = Security(security),db: Session = Depends(get_db)):
+    """
+    API to update the tasks
+    """
     token = credentials.credentials
     user_id = auth_handler.decode_token(token)
     if user_id:
@@ -68,6 +78,9 @@ def update_task_api(task_id: int, updated_task: Task, credentials: HTTPAuthoriza
 
 @router.delete("/tasks/{task_id}", response_model=Task, tags=["Task"])
 def delete_task_api(task_id: int, credentials: HTTPAuthorizationCredentials = Security(security), db: Session = Depends(get_db)):
+    """
+    API to remove the tasks
+    """
     token = credentials.credentials
     user_id = auth_handler.decode_token(token)
     if user_id:
