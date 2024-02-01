@@ -161,7 +161,7 @@ async def register_user(userinfo : Users ,db: Session = Depends(get_db)):
     return {"detail": {"message": "User details added successfully.", "statusCode": 201, "errorCode": None}} 
 
 @router.post('/Login', tags=["Users"])
-async def register_user(userinfo : Users ,db: Session = Depends(get_db)):
+async def login(userinfo : Users ,db: Session = Depends(get_db)):
     """
     API to Login the users
     This endpoint allows users to login by providing their username and password
